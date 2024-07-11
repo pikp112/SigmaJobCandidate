@@ -7,5 +7,7 @@ namespace SigmaCandidate.Infrastructure.Repositories.Interfaces
         Task AddAsync(T entity);
 
         Task UpdateAsync(string email, T Entity);
+
+        Task AddRangeAsync(IEnumerable<T> entities);
     }
 }

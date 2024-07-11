@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SigmaCandidate.Infrastructure.Data;
 
@@ -10,9 +11,11 @@ using SigmaCandidate.Infrastructure.Data;
 namespace SigmaCandidate.Infrastructure.Migrations
 {
     [DbContext(typeof(SigmaCandidateDbContext))]
-    partial class SigmaCandidateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240711114443_AddIndexEmail")]
+    partial class AddIndexEmail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

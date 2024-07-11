@@ -15,22 +15,25 @@ namespace SigmaCandidate.API.Controllers
         private readonly IMapper _mapper = mapper;
 
         [HttpPost]
-        public async Task<IActionResult> CreateCandidate(CandidateDto candidate)
+        public async Task<IActionResult> CreateCandidates([FromBody] IEnumerable<CandidateDto> candidates)
         {
-            if (!TryValidateModel(candidate))
-                return BadRequest(ModelState);
+            if (candidates == null || !candidates.Any())
+                return BadRequest("No candidate data provided.");
 
-            var existingCandidate = await _unitOfWork.CandidateRepository.GetCandidateByEmailAsync(candidate.Email);
+            foreach (var candidate in candidates)
+                if (!TryValidateModel(candidate))
+                    return BadRequest(ModelState);
 
-            if (existingCandidate != null)
-                return Conflict("A candidate with the same email already exists.");
+            var existingEmails = await _unitOfWork.CandidateRepository.GetExistingEmailsAsync(candidates.Select(c => c.Email));
 
-            var result = _mapper.Map<CandidateModel>(candidate);
+            if (existingEmails.Any())
+                return Conflict("One or more candidates with the same email already exist.");
 
-            await _unitOfWork.CandidateRepository.AddAsync(result);
-            await _unitOfWork.SaveChangesAsync();
+            var candidateModels = _mapper.Map<IEnumerable<CandidateModel>>(candidates);
 
-            return CreatedAtAction(nameof(GetCandidateByEmail), new { email = candidate.Email }, candidate);
+            await _unitOfWork.CandidateRepository.AddRangeAsync(candidateModels);
+
+            return CreatedAtAction(nameof(GetCandidateByEmail), new { email = candidates.First().Email }, candidates);
         }
 
         [HttpGet("{email}")]

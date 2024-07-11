@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SigmaCandidate.Infrastructure.Data;
 using SigmaCandidate.Infrastructure.Repositories.Implementations;
 using SigmaCandidate.Infrastructure.Repositories.Interfaces;
+using SigmaCandidate.Infrastructure.Services;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,11 +17,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<SigmaCandidateDbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    // options.UseMySql(builder.Configuration.GetConnectionString("MySqlConnection")); // Exemplu pentru MySQL
+    // options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSqlConnection")); // Exemplu pentru PostgreSQL
+});
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>))
                 .AddScoped<IUnitOfWork, UnitOfWork>()
-                .AddAutoMapper(Assembly.GetExecutingAssembly());
+                .AddAutoMapper(Assembly.GetExecutingAssembly())
+                .AddMemoryCache()
+                .AddScoped<ICacheService, MemoryCacheService>(); ;
 
 var app = builder.Build();
 

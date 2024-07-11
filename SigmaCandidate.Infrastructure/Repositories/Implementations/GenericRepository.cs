@@ -27,5 +27,11 @@ namespace SigmaCandidate.Infrastructure.Repositories.Implementations
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task AddRangeAsync(IEnumerable<T> entities) // add bulk operations
+        {
+            await _context.Set<T>().AddRangeAsync(entities);
+            await _context.SaveChangesAsync();
+        }
     }
 }
