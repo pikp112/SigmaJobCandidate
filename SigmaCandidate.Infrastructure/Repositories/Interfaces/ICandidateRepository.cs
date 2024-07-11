@@ -2,14 +2,8 @@
 
 namespace SigmaCandidate.Infrastructure.Repositories.Interfaces
 {
-    public interface ICandidateRepository
+    public interface ICandidateRepository : IGenericRepository<CandidateModel>
     {
         Task<CandidateModel> GetCandidateByEmailAsync(string email);
-
-        Task AddCandidateAsync(CandidateModel candidate);
-
-        Task UpdateCandidateAsync(CandidateModel candidate);
-
-        Task SaveChangesAsync();
     }
 }

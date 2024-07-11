@@ -2,7 +2,7 @@
 {
     public interface IUnitOfWork : IDisposable
     {
-        ICandidateRepository Candidates { get; }
+        ICandidateRepository CandidateRepository { get; }
 
         Task SaveChangesAsync();
     }

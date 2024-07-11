@@ -4,13 +4,8 @@ using System.Reflection;
 
 namespace SigmaCandidate.Infrastructure.Data
 {
-    public class SigmaCandidateDbContext : DbContext
+    public class SigmaCandidateDbContext(DbContextOptions<SigmaCandidateDbContext> options) : DbContext(options)
     {
-        public SigmaCandidateDbContext(DbContextOptions<SigmaCandidateDbContext> options)
-            : base(options)
-        {
-        }
-
         public DbSet<CandidateModel> Candidates { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

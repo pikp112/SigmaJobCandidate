@@ -8,19 +8,16 @@ namespace SigmaCandidate.Infrastructure.Repositories.Implementations
         private readonly SigmaCandidateDbContext _context = context;
         private ICandidateRepository _candidates;
 
-        public ICandidateRepository Candidates
+        public ICandidateRepository CandidateRepository
         {
             get { return _candidates ??= new CandidateRepository(_context); }
         }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+        public void Dispose() => _context.Dispose();
 
-        public Task SaveChangesAsync()
+        public async Task SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            await _context.SaveChangesAsync();
         }
     }
 }

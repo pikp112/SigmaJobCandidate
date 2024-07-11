@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigmaCandidate.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigmaCandidate.Core", "SigmaCandidate.Core\SigmaCandidate.Core.csproj", "{62593F5A-4E16-47EA-B419-C1B6A32F4579}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{05C00327-22F4-44AE-933C-38827FCDBC22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigmaCandidate.API.Tests", "SigmaCandidate.API.Tests\SigmaCandidate.API.Tests.csproj", "{A260CE88-BBEF-4433-A50F-C7D60839B681}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SigmaCandidate.Infrastructure.Tests", "SigmaCandidate.Infrastructure.Tests\SigmaCandidate.Infrastructure.Tests.csproj", "{A97F8711-F53D-4990-AB93-4851FC9497CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +33,21 @@ Global
 		{62593F5A-4E16-47EA-B419-C1B6A32F4579}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62593F5A-4E16-47EA-B419-C1B6A32F4579}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62593F5A-4E16-47EA-B419-C1B6A32F4579}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A260CE88-BBEF-4433-A50F-C7D60839B681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A260CE88-BBEF-4433-A50F-C7D60839B681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A260CE88-BBEF-4433-A50F-C7D60839B681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A260CE88-BBEF-4433-A50F-C7D60839B681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A97F8711-F53D-4990-AB93-4851FC9497CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A97F8711-F53D-4990-AB93-4851FC9497CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A97F8711-F53D-4990-AB93-4851FC9497CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A97F8711-F53D-4990-AB93-4851FC9497CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A260CE88-BBEF-4433-A50F-C7D60839B681} = {05C00327-22F4-44AE-933C-38827FCDBC22}
+		{A97F8711-F53D-4990-AB93-4851FC9497CD} = {05C00327-22F4-44AE-933C-38827FCDBC22}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EE0769B7-DAE7-4F9E-A3E1-FBF24EF164CB}
