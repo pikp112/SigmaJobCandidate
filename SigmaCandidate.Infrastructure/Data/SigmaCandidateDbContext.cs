@@ -12,10 +12,7 @@ namespace SigmaCandidate.Infrastructure.Data
         {
             modelBuilder.Entity<CandidateModel>(entity =>
             {
-                entity.HasKey(e => e.Id);
-
-                entity.HasIndex(e => e.Email)
-                      .IsUnique();
+                entity.HasKey(e => e.Email);
             });
 
             base.OnModelCreating(modelBuilder);

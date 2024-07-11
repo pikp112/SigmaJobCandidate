@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SigmaCandidate.Core.Dtos;
 using SigmaCandidate.Core.Models;
-using SigmaCandidate.Infrastructure.Data;
 using SigmaCandidate.Infrastructure.Repositories.Interfaces;
 
 namespace SigmaCandidate.API.Controllers
@@ -19,7 +17,7 @@ namespace SigmaCandidate.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCandidate(CandidateDto candidate)
         {
-            if (!ModelState.IsValid)
+            if (!TryValidateModel(candidate))
                 return BadRequest(ModelState);
 
             var existingCandidate = await _unitOfWork.CandidateRepository.GetCandidateByEmailAsync(candidate.Email);
